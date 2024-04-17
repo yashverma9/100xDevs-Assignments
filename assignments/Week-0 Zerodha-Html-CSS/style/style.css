@@ -1,0 +1,27 @@
+/* body,
+html {
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.nav-bar {
+  width: 100%;
+}
+
+.logo {
+  width: 120px;
+  padding: 25px;
+}
+
+.nav-items {
+  margin-right: 0;
+  float: right;
+  display: flex;
+  padding: 25px;
+}
+
+.nav-item {
+  padding-left: 5px;
+  vertical-align: middle;
+} */
