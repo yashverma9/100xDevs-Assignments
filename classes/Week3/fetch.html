@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Fetch example</title>
+  </head>
+  <body>
+    <button onclick="fetchResults()">Get the data</button>
+    <script>
+      async function fetchResults() {
+        const resp = await fetch("https://fakerapi.it/api/v1/persons");
+        console.log("resp type:", typeof resp);
+        console.log("resp: ", resp);
+        const finalData = await resp.json(); // Even this is an async function
+        console.log("finalData:", finalData);
+        console.log("type final data:", typeof finalData);
+      }
+    </script>
+  </body>
+</html>
