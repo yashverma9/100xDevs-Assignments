@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script>
+            async function calculateSum() {
+                const a = document.getElementById("num1").value;
+                const b = document.getElementById("num2").value;
+
+                // Instead of calculation here like before, we will make a fetch call to our node js server
+                //const baseUrl = "https://sum-server.100xdevs.com/sum"; // trying with hkirat deployed server
+                const baseUrl = "http://localhost:3000/sum"; // trying with local server
+                const urlWithParams = `${baseUrl}?a=${a}&b=${b}`;
+                const response = await fetch(urlWithParams);
+                const ans = await response.text();
+
+                document.getElementById("finalSum").innerHTML =
+                    "Sum is: " + ans;
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" placeholder="Enter a number" id="num1" />
+        <br />
+        <br />
+        <input type="text" placeholder="Enter a number" id="num2" />
+        <br />
+        <br />
+        <button onclick="calculateSum()">Calculate Sum</button>
+
+        <div id="finalSum"></div>
+    </body>
+</html>

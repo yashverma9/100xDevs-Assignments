@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script>
+            async function calculateInterest() {
+                const principal = document.getElementById("principal").value;
+                const rate = document.getElementById("rate").value;
+                const time = document.getElementById("time").value;
+
+                const baseUrl = "https://sum-server.100xdevs.com/interest"; // trying with hkirat deployed server
+                const urlWithParams = `${baseUrl}?principal=${principal}&rate=${rate}&time=${time}`;
+                const response = await fetch(urlWithParams);
+                const ans = await response.json();
+
+                document.getElementById("Result").innerHTML =
+                    "Total amount at the end: " +
+                    ans.total +
+                    " and interest gained is: " +
+                    ans.interest;
+            }
+        </script>
+    </head>
+    <body>
+        <input
+            type="text"
+            placeholder="Enter principal amount"
+            id="principal"
+        />
+        <br />
+        <br />
+        <input type="text" placeholder="Enter rate of interest" id="rate" />
+        <br />
+        <br />
+        <input type="text" placeholder="Enter time" id="time" />
+        <br />
+        <br />
+        <button onclick="calculateInterest()">Calculate Interest</button>
+
+        <div id="Result"></div>
+    </body>
+</html>

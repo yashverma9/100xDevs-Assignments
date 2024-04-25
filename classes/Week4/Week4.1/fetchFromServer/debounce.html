@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script>
+            let timeOut; // We have to define early as it will have to cleared initially
+
+            function debounceFn() {
+                clearTimeout(timeOut); // Clearing if any timer was running before
+                timeOut = setTimeout(() => {
+                    calculateSum();
+                }, 1000);
+            }
+            async function calculateSum() {
+                const principal = document.getElementById("principal").value;
+                const interest = document.getElementById("interest").value;
+                const time = document.getElementById("time").value;
+                const element = document.getElementById("finalAns");
+
+                const baseUrl = "https://sum-server.100xdevs.com/interest";
+                const urlWithParams = `${baseUrl}?principal=${principal}&rate=${interest}&time=${time}`;
+                console.log(urlWithParams);
+                const response = await fetch(urlWithParams);
+                const ans = await response.json();
+                element.innerHTML =
+                    "Total amount is: " +
+                    JSON.stringify(ans.total) +
+                    "<br>Total Interest is: " +
+                    JSON.stringify(ans.interest);
+            }
+        </script>
+    </head>
+    <body>
+        <input
+            oninput="debounceFn()"
+            type="text"
+            placeholder="Enter a principal amount"
+            id="principal"
+        />
+        <br />
+        <br />
+        <input
+            oninput="debounceFn()"
+            type="text"
+            placeholder="Enter an interest rate"
+            id="interest"
+        />
+        <br />
+        <br />
+        <input
+            oninput="debounceFn()"
+            type="text"
+            placeholder="Enter time (in years)"
+            id="time"
+        />
+        <br />
+
+        <div id="finalAns"></div>
+    </body>
+</html>
