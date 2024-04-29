@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- <button onclick="fn()" id="clickButton">Count is 0</button> -->
+        <div id="parentDiv"></div>
+        <script>
+            let state = {
+                count: 0,
+            };
+
+            function buttonPress() {
+                state.count += 1;
+                buttonReRender();
+            }
+
+            function buttonReRender() {
+                const div = document.getElementById("parentDiv");
+                div.innerHTML = "";
+                const newButton = buttonComponent(state.count);
+                div.appendChild(newButton);
+            }
+
+            function buttonComponent(count) {
+                const btn = document.createElement("button");
+                btn.innerHTML = `Count is ${count}`;
+                btn.setAttribute("onclick", "buttonPress()");
+                return btn;
+            }
+
+            buttonReRender();
+        </script>
+    </body>
+</html>
