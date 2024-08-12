@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://mydb_owner:hLi6Vl5KHpgo@ep-tight-firefly-a5mb9z40.us-east-2.aws.neon.tech/mydb?sslmode=require"
+}
+
+
+// model User {
+//   id Int     @id @default(autoincrement())
+//   email String @unique
+//   firstName String?
+//   lastName String?
+//   password String
+// }
+
+
+// model Todo {
+//   id Int @id @default(autoincrement())
+//   title String
+//   done Boolean @default(false)
+//   description String?
+//   userId Int
+// }
+
+// Added these for cloudworker project as they don't allow migrations (for week 11 blog)
+
+model User {
+  id Int   @id @default(autoincrement())
+  username  String
+  email String
+  password String
+  posts Post[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String 
+  body String
+  userId Int
+  User User @relation(fields: [userId], references: [id])
+  tags Tag[]
+  createdAt DateTime @default(now())
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  tag String @unique
+  posts Post[]
+
+}
