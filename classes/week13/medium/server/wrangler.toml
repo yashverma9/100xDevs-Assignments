@@ -1,0 +1,7 @@
+name = "server"
+compatibility_date = "2024-08-10"
+
+[vars]
+# This is connection pool url used by cloudflare worker app
+DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMzdmOWM4MGQtZmY0OS00Njc2LTg4MzMtNTM3ZWRhMDI3NWNkIiwidGVuYW50X2lkIjoiYTMxNTgzNjc0ZDVmMjVmMGY5Y2Y3YTc1NDVhNGI1ZTdkYTcwZjdhNTYwNTAxNTlmZmNlOTQ0YTY3NTIzNjU4MSIsImludGVybmFsX3NlY3JldCI6IjkxMGVkOTJkLWQyOTEtNGMxYy1iYzU2LTZjMmI1ZTNmNDExOCJ9.8o9bdBCm63OoU4uC5ICT4EfMbp5TOwOhbWpCCHGKx0U"
+JWT_SECRET = "somepass"
