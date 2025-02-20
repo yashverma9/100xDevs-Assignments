@@ -1,0 +1,26 @@
+# Instead of running all the commands from setting up network, volumes, then running mongo container and then app...
+# You can configure everything in one file (docker-compose.yml) This takes care of all those steps in one place
+# This also takes care of networks, and automatically starts them in one network bridge
+version: "3.8"
+services:
+    mongodb:
+        image: mongo
+        container_name: mongodb_inst
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongodb_data:/data/db
+
+    backend15.2:
+        build: . # You can also give this directly to build the image instead of mentioning image name below
+        image: 15.2.2mongo_app
+        container_name: backend_app
+        depends_on:
+            - mongodb
+        ports:
+            - "3000:3000"
+        environment:
+            - MONGO_URL=mongodb://mongodb_inst:27017
+
+volumes:
+    mongodb_data:
